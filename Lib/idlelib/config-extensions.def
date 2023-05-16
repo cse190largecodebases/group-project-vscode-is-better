@@ -60,3 +60,14 @@ z-text= Z
 z-in= <Control-Shift-KeyRelease-Insert>
 [ZzDummy_bindings]
 z-out= <Control-Shift-KeyRelease-Delete>
+
+
+[AutoCode]
+enable= True
+enable_shell = True
+enable_editor = True
+z-text= Z
+[AutoCode_cfgBindings]
+code-fill= <Control-8>
+#[ZzDummy_bindings]
+#z-out= <Control-Shift-KeyRelease-Delete>
