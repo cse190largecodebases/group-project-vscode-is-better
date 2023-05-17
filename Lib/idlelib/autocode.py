@@ -146,7 +146,15 @@ class AutoCode:
                             line = lines[pos]
                             lines[pos] = snippets[0] + line
 
-
+                    newchars = "\n".join(lines)
+                    out_msg.tag_remove("sel", "1.0", "end")
+                    out_msg.mark_set("insert", head)
+                    out_msg.undo_block_start()
+                    out_msg.delete(head, tail)
+                    out_msg.insert(head, newchars)
+                    out_msg.undo_block_stop()
+                    out_msg.tag_add("sel", head, "insert")
+                    
                     return "break"
                     
                     #add a newline
