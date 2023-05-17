@@ -106,7 +106,7 @@ class AutoCode:
 
     def code_fill_event(self, event=None):
         snippets = [
-            "python3 print (1+1)",
+            "print('this code only partially works :('))",
             "import sys",
             "from tkinter import Tk, Button",
             "def my_function():",
@@ -131,6 +131,9 @@ class AutoCode:
                         
                     #print to the python shell
                     self.editwin.flist.pyshell.write(snippets[0])
+                    #self.editwin.flist.pyshell.text.event_generate("<<newline>>")
+                    self.editwin.flist.pyshell.interp.runsource(snippets[0])
+
 
                     out_msg = self.editwin.text
                     first, last = self.editwin.get_selection_indices()
@@ -154,7 +157,7 @@ class AutoCode:
                     out_msg.insert(head, newchars)
                     out_msg.undo_block_stop()
                     out_msg.tag_add("sel", head, "insert")
-                    
+
                     return "break"
                     
                     #add a newline
