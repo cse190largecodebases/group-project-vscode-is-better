@@ -8,6 +8,7 @@ from idlelib.config import idleConf
 from functools import wraps
 from idlelib.config import idleConf
 from idlelib.editor import EditorWindow
+from idlelib.format import FormatRegion
 from idlelib.undo import UndoDelegator
 from idlelib.percolator import Percolator
 import tkinter as tk
@@ -105,7 +106,7 @@ class AutoCode:
 
     def code_fill_event(self, event=None):
         snippets = [
-            "import os",
+            "python3 print (1+1)",
             "import sys",
             "from tkinter import Tk, Button",
             "def my_function():",
@@ -125,7 +126,34 @@ class AutoCode:
                                             # dropdown=sorted(snippets))
             if snippet:
                 # Insert the selected snippet at the current cursor position
-                self.insert_snippet(snippet)
+                    if (self.editwin.flist.pyshell == None):
+                        self.editwin.flist.open_shell()
+                        
+                    #print to the python shell
+                    self.editwin.flist.pyshell.write(snippets[0])
+
+                    out_msg = self.editwin.text
+                    first, last = self.editwin.get_selection_indices()
+                    if first and last:
+                        head = out_msg.index(first + " linestart")
+                        tail = out_msg.index(last + "-1c lineend +1c")
+                    else:
+                        head = out_msg.index("insert linestart")
+                        tail = out_msg.index("insert lineend +1c")
+                    chars = out_msg.get(head, tail)
+                    lines = chars.split("\n")
+                    for pos in range(len(lines) - 1):
+                            line = lines[pos]
+                            lines[pos] = snippets[0] + line
+
+
+                    return "break"
+                    
+                    #add a newline
+                    #self.editwin.flist.pyshell.write("\n")
+
+                    #add the python prompt to indicate that the python shell can now be used as normal
+                    #self.editwin.flist.pyshell.showprompt()
 
         root.destroy()  # Close the dialog box
 
