@@ -62,51 +62,7 @@ class AutoCode:
         "Load class variables from config."
         cls.ztext = idleConf.GetOption('extensions', 'ZzDummy', 'z-text')
 
-    # @format_selection
-    # def z_in_event(self, line):
-    #     """Insert text at the beginning of each selected line.
-
-    #     This is bound to the <<z-in>> virtual event when the extensions
-    #     are loaded.
-    #     """
-    #     return f'{self.ztext}{line}'
-    
-
-    # def show_code_snippets_event(self):
-    #     """Show a pop-up window with code snippets and insert the selected snippet."""
-    #     root = tk.Tk()
-    #     root.withdraw()
-    #     snippet_names = list(self.code_snippets.keys())
-    #     selected_snippet = tk.messagebox.askquestion('Code Snippets', 'Select a code snippet:', icon='question', choices=snippet_names)
-    #     if selected_snippet:
-    #         snippet_code = self.code_snippets[selected_snippet]
-    #         if isinstance(self.editwin, EditorWindow):
-    #             # If the current window is an EditorWindow, insert the snippet at the cursor position.
-    #             self.editwin.insert_into_text(snippet_code)
-    #         elif isinstance(self.editwin, tk.Text):
-    #             # If the current window is a Text widget, insert the snippet at the end of the text.
-    #             self.editwin.insert(tk.END, snippet_code)
-    #     root.destroy()
-
-
-    ## TO SHOW DIALOGUE BOX - LOOK AT grep.py 
-
-    # def code_fill_event(self):
-    #     """Show a message box with code snippets and insert the selected snippet."""
-    #     snippets = [
-    #             "import os",
-    #             "import sys",
-    #             "from tkinter import Tk, Button",
-    #             "def my_function():",
-    #             "    print('Hello, world!')"
-    #         ]
-
-    #     root = tk.Tk()
-    #     root.withdraw()  # Hide the main window
-
-    #     selected_snippet = messagebox.askquestion("Autocode Snippets",
-    #                                                 "Do you want to insert a code snippet?")
-
+   
 
     def code_fill_event(self, event=None):
         snippets = [
