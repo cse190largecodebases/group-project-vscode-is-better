@@ -41,6 +41,8 @@ class AutoCode:
         ] )
     ]
 
+
+
     code_snippets = {
         'For Loop': 'for item in sequence:\n    # Do something',
         'While Loop': 'while condition:\n    # Do something',
@@ -52,6 +54,8 @@ class AutoCode:
         self.editwin = editwin
         self.text = editwin.text
         self.formatter = editwin.fregion
+
+
 
     @classmethod
     def reload(cls):
@@ -106,7 +110,8 @@ class AutoCode:
 
     def code_fill_event(self, event=None):
         snippets = [
-            "print('this code only partially works :('))",
+             "while (flag == True):\n",
+            "print('this code only partially works')",
             "import sys",
             "from tkinter import Tk, Button",
             "def my_function():",
@@ -118,12 +123,14 @@ class AutoCode:
 
         selected_snippet = messagebox.askquestion("Autocode Snippets",
                                                 "Do you want to insert a code snippet?")
+        
 
         if selected_snippet == "yes":
             snippet = simpledialog.askstring("Select a Snippet", "Select a code snippet:", 
                                             parent=root, initialvalue=snippets[0])
                                             # listboxheight=len(snippets), 
                                             # dropdown=sorted(snippets))
+
             if snippet:
                 # Insert the selected snippet at the current cursor position
                     if (self.editwin.flist.pyshell == None):
@@ -171,6 +178,7 @@ class AutoCode:
 
     def insert_snippet(self, snippet):
         # Implement the logic to insert the snippet at the current cursor position
+        
         pass
 
 
