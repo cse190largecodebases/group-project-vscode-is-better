@@ -110,7 +110,7 @@ class AutoCode:
 
     def code_fill_event(self, event=None):
         snippets = [
-             "while (flag == True):\n",
+            "for i in range (1,10):\n",
             "print('this code only partially works')",
             "import sys",
             "from tkinter import Tk, Button",
