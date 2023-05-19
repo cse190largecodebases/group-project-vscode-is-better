@@ -14,6 +14,8 @@ from idlelib.percolator import Percolator
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import simpledialog
+from tkinter import OptionMenu
+
 
 
 def format_selection(format_line):
@@ -66,7 +68,7 @@ class AutoCode:
 
     def code_fill_event(self, event=None):
         snippets = [
-            "for i in range (1,10):\n",
+            # "for i in range (1,10):\n",
             "print('this code only partially works')",
             "import sys",
             "from tkinter import Tk, Button",
@@ -82,6 +84,18 @@ class AutoCode:
         
 
         if selected_snippet == "yes":
+            # root = tk.Tk()
+            # root.withdraw()  # Hide the main window
+
+            # snippets = list(self.code_snippets.keys())
+            # snippet = simpledialog.askstring("Select a Snippet", "Select a code snippet:", parent=root,
+            #                                         initialvalue=snippets[0], dropdown=sorted(snippets))
+
+            # # if selected_snippet:
+            # #     self.insert_snippet(self.code_snippets[selected_snippet])
+
+            # root.destroy()  # Close the dialog box
+
             snippet = simpledialog.askstring("Select a Snippet", "Select a code snippet:", 
                                             parent=root, initialvalue=snippets[0])
                                             # listboxheight=len(snippets), 
@@ -157,3 +171,6 @@ AutoCode.reload()
 # if __name__ == "__main__":
 #     import unittest
 #     unittest.main('idlelib.idle_test.test_zzdummy', verbosity=2, exit=False)
+
+
+
