@@ -71,3 +71,5 @@ z-text= Z
 code-fill= <Control-8>
 [AutoCode_bindings]
 add-snippet= <Control-9>
+[AutoCode_bindings]
+delete-snippet= <Control-7>

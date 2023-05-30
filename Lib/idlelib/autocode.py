@@ -25,6 +25,21 @@ class SnippetDialog(simpledialog.Dialog):
     def apply(self):
         self.result = self.snippets[self.optionVar.get()]
 
+class SnippetDeleteDialog(simpledialog.Dialog):
+    def __init__(self, parent, title, snippets):
+        self.snippets = snippets
+        super().__init__(parent, title)
+
+    def body(self, master):
+        self.title("Delete a Snippet")
+        self.optionVar = tk.StringVar()
+        self.optionVar.set(list(self.snippets.keys())[0])  # default choice
+        self.dropdown = OptionMenu(master, self.optionVar, *self.snippets.keys())
+        self.dropdown.pack()
+
+    def apply(self):
+        self.result = self.optionVar.get()
+
 class CodeDialog(simpledialog.Dialog):
     def __init__(self, parent, title=None):
         self.text = ''
@@ -52,8 +67,9 @@ class AutoCode:
     menudefs = [
         ('edit', [
             ('Code fill', '<<code-fill>>'),
-            ('Add snippet', '<<add-snippet>>')
-        ] )
+            ('Add snippet', '<<add-snippet>>'),
+            ('Delete snippet', '<<delete-snippet>>')
+        ])
     ]
     snippets = {
         "For Loop": "for i in range(n):\n    pass\n",
@@ -100,7 +116,18 @@ class AutoCode:
 
         root.destroy()
         return 'break'
+    
+    def delete_snippet_event(self, event=None):
+        root = tk.Tk()
+        root.withdraw()
 
+        delete_dialog = SnippetDeleteDialog(root, "Delete Snippet", self.snippets)
+        snippet_to_delete = delete_dialog.result
 
+        if snippet_to_delete:
+            del self.snippets[snippet_to_delete]
+
+        root.destroy()
+        return 'break'
 
 AutoCode.reload()
