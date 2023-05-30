@@ -9,7 +9,6 @@ import tkinter as tk
 from tkinter import simpledialog
 from tkinter import OptionMenu
 
-
 class SnippetDialog(simpledialog.Dialog):
     def __init__(self, parent, title, snippets):
         self.snippets = snippets
@@ -58,8 +57,7 @@ class CodeDialog(simpledialog.Dialog):
     def insert_newline(self, event=None):
         self.text_widget.insert(tk.INSERT, '\n')
         return "break"
-
-
+    
 class AutoCode:
     """Prepend or remove initial text from selected lines."""
 
