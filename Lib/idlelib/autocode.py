@@ -72,8 +72,8 @@ class AutoCode:
         ])
     ]
     snippets = {
-        "For Loop": "for i in range(n):\n    pass\n",
-        "While Loop": "while condition:\n    pass\n",
+        "For Loop": "for i in range('insert range here'):\n    pass\n",
+        "While Loop": "while 'insert condition here':\n    pass\n",
         "Try-Catch Block": "try:\n    pass\nexcept Exception as e:\n    pass\n",
         "Function Definition": "def function_name(parameters):\n    pass\n",
         "Class Definition": "class ClassName:\n    def __init__(self):\n        pass\n",
@@ -100,6 +100,13 @@ class AutoCode:
             if snippet:
                 self.text.insert(tk.INSERT, snippet)
                 self.text.see(tk.INSERT)
+                if (self.editwin.flist.pyshell == None):
+                        self.editwin.flist.open_shell()
+
+                #print to the python shell
+                self.editwin.flist.pyshell.write(snippet)
+
+
 
             root.destroy()  # Close the dialog box
 
@@ -107,7 +114,7 @@ class AutoCode:
         root = tk.Tk()
         root.withdraw()
 
-        snippet_description = simpledialog.askstring("New Snippet", "Enter the description of the new snippet:", parent=root)
+        snippet_description = simpledialog.askstring("Ne    w Snippet", "Enter the description of the new snippet:", parent=root)
         if snippet_description:
             snippet_dialog = CodeDialog(root, "New Snippet")
             snippet_code = snippet_dialog.text
