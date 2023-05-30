@@ -9,6 +9,7 @@ import tkinter as tk
 from tkinter import simpledialog
 from tkinter import OptionMenu
 
+
 class SnippetDialog(simpledialog.Dialog):
     def __init__(self, parent, title, snippets):
         self.snippets = snippets
@@ -24,6 +25,26 @@ class SnippetDialog(simpledialog.Dialog):
     def apply(self):
         self.result = self.snippets[self.optionVar.get()]
 
+class CodeDialog(simpledialog.Dialog):
+    def __init__(self, parent, title=None):
+        self.text = ''
+        super().__init__(parent, title)
+
+    def body(self, master):
+        tk.Label(master, text="Enter the code for the new snippet:").grid(row=0)
+        self.text_widget = tk.Text(master)
+        self.text_widget.grid(row=1, padx=10)
+        self.text_widget.bind("<Return>", self.insert_newline)
+        return self.text_widget
+
+    def apply(self):
+        self.text = self.text_widget.get("1.0", 'end-1c')
+        
+    def insert_newline(self, event=None):
+        self.text_widget.insert(tk.INSERT, '\n')
+        return "break"
+
+
 class AutoCode:
     """Prepend or remove initial text from selected lines."""
 
@@ -31,8 +52,17 @@ class AutoCode:
     menudefs = [
         ('edit', [
             ('Code fill', '<<code-fill>>'),
+            ('Add snippet', '<<add-snippet>>')
         ] )
     ]
+    snippets = {
+        "For Loop": "for i in range(n):\n    pass\n",
+        "While Loop": "while condition:\n    pass\n",
+        "Try-Catch Block": "try:\n    pass\nexcept Exception as e:\n    pass\n",
+        "Function Definition": "def function_name(parameters):\n    pass\n",
+        "Class Definition": "class ClassName:\n    def __init__(self):\n        pass\n",
+        "If-Else Structure": "if condition:\n    pass\nelse:\n    pass\n",
+    }
 
     def __init__(self, editwin):
         "Initialize the settings for this extension."
@@ -46,19 +76,9 @@ class AutoCode:
         cls.ztext = idleConf.GetOption('extensions', 'AutoCode', 'z-text')
 
     def code_fill_event(self, event=None):
-            snippets = {
-                "For Loop": "for i in range(n):\n    pass\n",
-                "While Loop": "while condition:\n    pass\n",
-                "Try-Catch Block": "try:\n    pass\nexcept Exception as e:\n    pass\n",
-                "Function Definition": "def function_name(parameters):\n    pass\n",
-                "Class Definition": "class ClassName:\n    def __init__(self):\n        pass\n",
-                "If-Else Structure": "if condition:\n    pass\nelse:\n    pass\n",
-            }
-
-
             root = tk.Tk()
             root.withdraw()  # Hide the main window
-            dialog = SnippetDialog(root, "Select a Snippet", snippets)
+            dialog = SnippetDialog(root, "Select a Snippet", self.snippets)
             snippet = dialog.result
 
             if snippet:
@@ -67,6 +87,20 @@ class AutoCode:
 
             root.destroy()  # Close the dialog box
 
+    def add_snippet_event(self, event=None):
+        root = tk.Tk()
+        root.withdraw()
+
+        snippet_description = simpledialog.askstring("New Snippet", "Enter the description of the new snippet:", parent=root)
+        if snippet_description:
+            snippet_dialog = CodeDialog(root, "New Snippet")
+            snippet_code = snippet_dialog.text
+            if snippet_code:
+                self.snippets[snippet_description] = snippet_code
+
+        root.destroy()
+        return 'break'
+
+
+
 AutoCode.reload()
-
-
