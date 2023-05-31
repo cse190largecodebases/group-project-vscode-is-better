@@ -68,6 +68,8 @@ enable_shell = True
 enable_editor = True
 z-text= Z
 [AutoCode_cfgBindings]
-code-fill= <Control-8>
-#[ZzDummy_bindings]
-#z-out= <Control-Shift-KeyRelease-Delete>
+code-fill= <Control-6>
+[AutoCode_bindings]
+add-snippet= <Control-7>
+[AutoCode_bindings]
+delete-snippet= <Control-8>
