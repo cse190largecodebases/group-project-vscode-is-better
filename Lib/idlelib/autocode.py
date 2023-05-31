@@ -89,44 +89,33 @@ class AutoCode:
         "Load class variables from config."
         cls.ztext = idleConf.GetOption('extensions', 'AutoCode', 'z-text')
 
+    # def code_fill_event(self, event=None):
+    #         root = tk.Tk()
+    #         root.withdraw()  # Hide the main window
+    #         dialog = SnippetDialog(root, "Select a Snippet", self.snippets)
+    #         snippet = dialog.result
+
+    #         if snippet:
+    #             self.text.insert(tk.INSERT, snippet)
+    #             self.text.see(tk.INSERT)
+
+    #         root.destroy()  # Close the dialog box
     def code_fill_event(self, event=None):
-            root = tk.Tk()
-            root.withdraw()  # Hide the main window
-            dialog = SnippetDialog(root, "Select a Snippet", self.snippets)
-            snippet = dialog.result
+        root = tk.Tk()
+        root.withdraw()
 
-            if snippet:
-                self.text.insert(tk.INSERT, snippet)
-                self.text.see(tk.INSERT)
+        dialog = SnippetDialog(root, "Select a Snippet", self.snippets)
+        snippet = dialog.result
 
-            root.destroy()  # Close the dialog box
+        if snippet:
+            self.code_fill_event_logic(snippet)
 
-    # def add_snippet_event(self, event=None):
-    #     root = tk.Tk()
-    #     root.withdraw()
+        root.destroy()
 
-    #     snippet_description = simpledialog.askstring("New Snippet", "Enter the description of the new snippet:", parent=root)
-    #     if snippet_description:
-    #         snippet_dialog = CodeDialog(root, "New Snippet")
-    #         snippet_code = snippet_dialog.text
-    #         if snippet_code:
-    #             self.snippets[snippet_description] = snippet_code
-
-    #     root.destroy()
-    #     return 'break'
-    
-    # def delete_snippet_event(self, event=None):
-    #     root = tk.Tk()
-    #     root.withdraw()
-
-    #     delete_dialog = SnippetDeleteDialog(root, "Delete Snippet", self.snippets)
-    #     snippet_to_delete = delete_dialog.result
-
-    #     if snippet_to_delete:
-    #         del self.snippets[snippet_to_delete]
-
-    #     root.destroy()
-    #     return 'break'
+    def code_fill_event_logic(self, snippet):
+        self.text.insert(tk.INSERT, snippet)
+        self.text.see(tk.INSERT)
+        
     def add_snippet_event(self, event=None):
         root = tk.Tk()
         root.withdraw()

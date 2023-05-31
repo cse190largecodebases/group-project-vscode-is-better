@@ -1,14 +1,13 @@
-"Test zzdummy, coverage 100%."
 import unittest
 from test.support import requires
 from unittest.mock import MagicMock
-from autocode import AutoCode
+from idlelib import autocode
 
 class TestAutoCode(unittest.TestCase):
     def setUp(self):
         self.editwin = MagicMock()
         self.editwin.text = MagicMock()
-        self.auto_code = AutoCode(self.editwin)
+        self.auto_code = autocode.AutoCode(self.editwin)
 
     def test_init(self):
         self.assertEqual(self.auto_code.editwin, self.editwin)
@@ -26,6 +25,12 @@ class TestAutoCode(unittest.TestCase):
         self.auto_code.add_snippet_event_logic(snippet_description, snippet_code)
         self.auto_code.delete_snippet_event_logic(snippet_description)
         self.assertNotIn(snippet_description, self.auto_code.snippets)
+
+    def test_code_fill_event_logic(self):
+        snippet = "print('Hello, World!')"
+        self.auto_code.code_fill_event_logic(snippet)
+        self.auto_code.text.insert.assert_called_once_with('insert', snippet)
+        self.auto_code.text.see.assert_called_once_with('insert')
 
 if __name__ == "__main__":
     unittest.main()
