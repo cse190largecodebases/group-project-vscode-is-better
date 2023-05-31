@@ -131,3 +131,7 @@ class AutoCode:
         return 'break'
 
 AutoCode.reload()
+
+if __name__ == "__main__":
+    import unittest
+    unittest.main('idlelib.idle_test.test_autocode', verbosity=2, exit=False)
