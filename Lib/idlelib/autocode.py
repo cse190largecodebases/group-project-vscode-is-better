@@ -101,6 +101,32 @@ class AutoCode:
 
             root.destroy()  # Close the dialog box
 
+    # def add_snippet_event(self, event=None):
+    #     root = tk.Tk()
+    #     root.withdraw()
+
+    #     snippet_description = simpledialog.askstring("New Snippet", "Enter the description of the new snippet:", parent=root)
+    #     if snippet_description:
+    #         snippet_dialog = CodeDialog(root, "New Snippet")
+    #         snippet_code = snippet_dialog.text
+    #         if snippet_code:
+    #             self.snippets[snippet_description] = snippet_code
+
+    #     root.destroy()
+    #     return 'break'
+    
+    # def delete_snippet_event(self, event=None):
+    #     root = tk.Tk()
+    #     root.withdraw()
+
+    #     delete_dialog = SnippetDeleteDialog(root, "Delete Snippet", self.snippets)
+    #     snippet_to_delete = delete_dialog.result
+
+    #     if snippet_to_delete:
+    #         del self.snippets[snippet_to_delete]
+
+    #     root.destroy()
+    #     return 'break'
     def add_snippet_event(self, event=None):
         root = tk.Tk()
         root.withdraw()
@@ -110,7 +136,7 @@ class AutoCode:
             snippet_dialog = CodeDialog(root, "New Snippet")
             snippet_code = snippet_dialog.text
             if snippet_code:
-                self.snippets[snippet_description] = snippet_code
+                self.add_snippet_event_logic(snippet_description, snippet_code)
 
         root.destroy()
         return 'break'
@@ -123,9 +149,15 @@ class AutoCode:
         snippet_to_delete = delete_dialog.result
 
         if snippet_to_delete:
-            del self.snippets[snippet_to_delete]
+            self.delete_snippet_event_logic(snippet_to_delete)
 
         root.destroy()
         return 'break'
+
+    def add_snippet_event_logic(self, snippet_description, snippet_code):
+        self.snippets[snippet_description] = snippet_code
+
+    def delete_snippet_event_logic(self, snippet_to_delete):
+        del self.snippets[snippet_to_delete]
 
 AutoCode.reload()
