@@ -89,17 +89,6 @@ class AutoCode:
         "Load class variables from config."
         cls.ztext = idleConf.GetOption('extensions', 'AutoCode', 'z-text')
 
-    # def code_fill_event(self, event=None):
-    #         root = tk.Tk()
-    #         root.withdraw()  # Hide the main window
-    #         dialog = SnippetDialog(root, "Select a Snippet", self.snippets)
-    #         snippet = dialog.result
-
-    #         if snippet:
-    #             self.text.insert(tk.INSERT, snippet)
-    #             self.text.see(tk.INSERT)
-
-    #         root.destroy()  # Close the dialog box
     def code_fill_event(self, event=None):
         root = tk.Tk()
         root.withdraw()
@@ -115,7 +104,7 @@ class AutoCode:
     def code_fill_event_logic(self, snippet):
         self.text.insert(tk.INSERT, snippet)
         self.text.see(tk.INSERT)
-        
+
     def add_snippet_event(self, event=None):
         root = tk.Tk()
         root.withdraw()
