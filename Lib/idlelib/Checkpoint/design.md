@@ -26,6 +26,7 @@ Also, we added the option for the user to add a custom code snippets. Thus, afte
 ![Alt text](images/p1_2.png)
 
 - After we clicked OK on one of the options (in this case the For Loop)
+
 ![Alt text](images/p1_3.png)
 
 **Add Snippet Option**
