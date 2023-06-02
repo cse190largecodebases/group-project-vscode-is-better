@@ -51,9 +51,11 @@ Also, we added the option for the user to add a custom code snippets. Thus, afte
 **Delete Snippet Option**
 
 - When the user selects the delete snippet option, it will shows the drop down list of description of the available snippets
+
 ![Alt text](images/p1_8.png)
 
 - When the user selects the "Print Hello" snippet and click OK, the next time they select Code Fill option, "Print Hello" snippet will no longer exist in the drop down list
+
 ![Alt text](images/p1_9.png)
 
 ## Discussion of implementation
