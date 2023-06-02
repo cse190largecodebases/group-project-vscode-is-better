@@ -19,10 +19,12 @@ Also, we added the option for the user to add a custom code snippets. Thus, afte
 ## Features Showdown
 
 - 3 added options on the edit toolbar
+
 ![Alt text](images/p1_1.png)
 
 **Code Fill Option**
 - When Code Fill is clicked, it will shows a dropdown list of default options
+
 ![Alt text](images/p1_2.png)
 
 - After we clicked OK on one of the options (in this case the For Loop)
@@ -31,15 +33,19 @@ Also, we added the option for the user to add a custom code snippets. Thus, afte
 
 **Add Snippet Option**
 - When Add snippet is clicked, it will ask the user what the snippet description be
+
 ![Alt text](images/p1_4.png)
 
 - After the user clicked OK, it will ask the user to write the code snippet
+
 ![Alt text](images/p1_5.png)
 
 - After the user clicked OK, the next time they select Code Fill option, "Print Hello" option will be shown in the drop down list
+
 ![Alt text](images/p1_6.png)
 
 - When the user select print hello and clicked OK, the custom snippet will be shown in the window
+
 ![Alt text](images/p1_7.png)
 
 **Delete Snippet Option**
