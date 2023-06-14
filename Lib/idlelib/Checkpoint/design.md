@@ -4,7 +4,7 @@ Nathaniel Susabda A17196946
 
 Aman Singh Arora A15977180
 
-Final Project Checkpoint - Code Fill (AutoCode) Extension
+Final Design Document
 
 ## Description of the project
 
@@ -62,6 +62,8 @@ Also, we added the option for the user to add a custom code snippets. Thus, afte
 
 **Diagrams**
 ![Alt text](images/diagram.jpeg)
+Added Diagrams
+![Alt text](images/p2_1.png)
 
 **Necessary existing files and Explanation to implement the new feature:**
 
@@ -185,7 +187,9 @@ This class extends the unittest.TestCase class and is a test case for the AutoCo
 
 - test_code_fill_event_logic(self): This method tests the code_fill_event_logic method of the AutoCode class. It inserts a test snippet into the text and checks that the insert and see methods of the text attribute have been called with the correct arguments.
 
-2. if __name__ == "__main__"
+For the unittest, the GUI part is not covered because we were struggling to set it up on mac computers. Thus, our test coverage is only 28% since this only covers the code logic behind it.
+
+1. if __name__ == "__main__"
 
 unittest.main(): This is the main execution guard. If the script is run directly (not imported), it runs the tests in the script.
 
